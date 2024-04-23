@@ -1,6 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useState } from 'react'
 import clsx from 'clsx'
-import { daysOfMonth, firstDayOfMonth } from '../../../helper/calendar'
+import { daysOfMonth, firstDayOfMonth } from '../../../../helper/calendar'
+import { monthNames, weeks } from '../../_data'
 
 export interface ICalendarProps {
   value?: Date
@@ -16,24 +17,8 @@ export interface CalendarRef {
 // Date 的 month 是从 0 开始计数的，取值是 0 到 11
 // date 传 0 的时候，取到的是上个月的最后一天
 
-const weeks = ['日', '一', '二', '三', '四', '五', '六']
-const monthNames = [
-  '一月',
-  '二月',
-  '三月',
-  '四月',
-  '五月',
-  '六月',
-  '七月',
-  '八月',
-  '九月',
-  '十月',
-  '十一月',
-  '十二月'
-]
-
 /**
- * 简单迷你版日历组件
+ * 实现简单迷你版日历组件
  */
 const InternalCalendar: React.ForwardRefRenderFunction<
   CalendarRef,

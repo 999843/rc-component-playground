@@ -10,7 +10,6 @@ export interface IMonthCalendarProps extends ICalendarProps {}
 const MonthCalendar: React.FC<IMonthCalendarProps> = (props) => {
   const { value } = props
   const daysInfo = getAllDays(value)
-  console.log(daysInfo)
 
   function renderDays(
     days: Array<{
@@ -26,7 +25,7 @@ const MonthCalendar: React.FC<IMonthCalendarProps> = (props) => {
         row[j] = (
           <div
             className={clsx(
-              `flex-1 p-2.5  border`,
+              `flex-1 p-2.5 border`,
               i === 0 ? 'border-t-transparent' : 'border-[#eee]',
               item.currentMonth ? 'text-[#000]' : 'text-[#ccc]'
             )}
@@ -52,7 +51,7 @@ const MonthCalendar: React.FC<IMonthCalendarProps> = (props) => {
           )
         })}
       </div>
-      <div className="">{renderDays(daysInfo)}</div>
+      <div>{renderDays(daysInfo)}</div>
     </div>
   )
 }
