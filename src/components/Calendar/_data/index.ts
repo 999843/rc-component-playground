@@ -14,4 +14,12 @@ export const monthNames = [
   '十二月'
 ]
 
-export const weekList = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
+export const weekList = [
+  'sunday',
+  'monday',
+  'tuesday',
+  'wednesday',
+  'thursday',
+  'friday',
+  'saturday'
+]

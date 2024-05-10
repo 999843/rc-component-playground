@@ -4,18 +4,27 @@ import { ICalendarProps } from '../..'
 import { getAllDays } from '../../../../helper/calendar'
 import { Dayjs } from 'dayjs'
 import clsx from 'clsx'
+import { useLocaleContext } from '../../_context'
+import allLocales from '../../_locale'
 
-export interface IMonthCalendarProps extends ICalendarProps {}
+export interface IMonthCalendarProps extends ICalendarProps {
+  curMonth: Dayjs
+  handleSelect?: (date: Dayjs) => void
+}
 
 const MonthCalendar: React.FC<IMonthCalendarProps> = (props) => {
-  const { value } = props
-  const daysInfo = getAllDays(value)
-
+  const { value, curMonth, dateRender, dateInnerContent, handleSelect } = props
+  const daysInfo = getAllDays(curMonth)
+  const { locale } = useLocaleContext()
+  const calendarLocale = allLocales[locale]
   function renderDays(
     days: Array<{
       date: Dayjs
       currentMonth: boolean
-    }>
+    }>,
+    dateRender: IMonthCalendarProps['dateRender'],
+    dateInnerContent: IMonthCalendarProps['dateInnerContent'],
+    value?: Dayjs
   ) {
     const rows = []
     for (let i = 0; i < 6; i++) {
@@ -24,13 +33,31 @@ const MonthCalendar: React.FC<IMonthCalendarProps> = (props) => {
         const item = days[i * 7 + j]
         row[j] = (
           <div
+            onClick={() => {
+              handleSelect?.(item.date)
+            }}
             className={clsx(
-              `flex-1 p-2.5 border`,
+              `flex-1 border overflow-hidden cursor-pointer`,
               i === 0 ? 'border-t-transparent' : 'border-[#eee]',
               item.currentMonth ? 'text-[#000]' : 'text-[#ccc]'
             )}
           >
-            {item.date.date()}
+            {dateRender ? (
+              dateRender(item.date)
+            ) : (
+              <div className={clsx(`p-2.5`)}>
+                <div
+                  className={clsx(
+                    value?.format('YYYY-MM-DD') ===
+                      item.date.format('YYYY-MM-DD') &&
+                      'bg-[#3f64f6] text-white rounded-full w-7 h-7 flex items-center justify-center'
+                  )}
+                >
+                  {item.date.date()}
+                </div>
+                <div>{dateInnerContent?.(item.date)}</div>
+              </div>
+            )}
           </div>
         )
       }
@@ -46,12 +73,12 @@ const MonthCalendar: React.FC<IMonthCalendarProps> = (props) => {
         {weekList.map((item) => {
           return (
             <div key={item} className="flex-1 px-4 py-4">
-              {item}
+              {calendarLocale.week[item]}
             </div>
           )
         })}
       </div>
-      <div>{renderDays(daysInfo)}</div>
+      <div>{renderDays(daysInfo, dateRender, dateInnerContent, value)}</div>
     </div>
   )
 }
