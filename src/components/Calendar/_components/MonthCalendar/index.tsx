@@ -17,14 +17,12 @@ const MonthCalendar: React.FC<IMonthCalendarProps> = (props) => {
   const daysInfo = getAllDays(curMonth)
   const { locale } = useLocaleContext()
   const calendarLocale = allLocales[locale]
+
   function renderDays(
     days: Array<{
       date: Dayjs
       currentMonth: boolean
-    }>,
-    dateRender: IMonthCalendarProps['dateRender'],
-    dateInnerContent: IMonthCalendarProps['dateInnerContent'],
-    value?: Dayjs
+    }>
   ) {
     const rows = []
     for (let i = 0; i < 6; i++) {
@@ -78,7 +76,7 @@ const MonthCalendar: React.FC<IMonthCalendarProps> = (props) => {
           )
         })}
       </div>
-      <div>{renderDays(daysInfo, dateRender, dateInnerContent, value)}</div>
+      <div>{renderDays(daysInfo)}</div>
     </div>
   )
 }

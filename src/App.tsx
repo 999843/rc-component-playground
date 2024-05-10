@@ -7,7 +7,7 @@ function App() {
     <div className="p-3">
       {/* 日历组件 */}
       {/* <MinCalender /> */}
-      <Calendar value={dayjs(new Date())} />
+      <Calendar value={dayjs(new Date())} locale="en-US" />
     </div>
   )
 }

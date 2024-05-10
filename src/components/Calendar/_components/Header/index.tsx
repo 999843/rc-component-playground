@@ -1,6 +1,8 @@
 import React from 'react'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { Dayjs } from 'dayjs'
+import { useLocaleContext } from '../../_context'
+import allLocales from '../../_locale'
 
 export interface IHeaderProps {
   curMonth?: Dayjs
@@ -11,6 +13,11 @@ export interface IHeaderProps {
 
 const Header: React.FC<IHeaderProps> = (props) => {
   const { curMonth, prevMonthHandler, nextMonthHandler, todayHandler } = props
+
+  const localeContext = useLocaleContext()
+
+  const calendarContext = allLocales[localeContext.locale]
+
   const arrowClass = `text-gray cursor-pointer text-sm hover:text-gray-400`
 
   return (
@@ -21,7 +28,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
           onClick={prevMonthHandler}
         />
         <span className="font-semibold mx-10 text-xl">
-          {curMonth?.format('YYYY年MM月DD')}
+          {curMonth?.format(calendarContext.formatMonth)}
         </span>
         <RightOutlined
           className={`${arrowClass} px-3`}
@@ -31,7 +38,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
           onClick={todayHandler}
           className="text-sm bg-gray-100 rounded px-2 py-1 hover:bg-[#ccc] hover:text-white"
         >
-          今天
+          {calendarContext.today}
         </button>
       </div>
     </div>

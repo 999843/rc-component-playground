@@ -28,9 +28,14 @@ const Calendar: React.FC<ICalendarProps> = (props) => {
   const [currentValue, setCurrentValue] = useState<Dayjs>(value)
   const [currentMonth, setCurrentMonth] = useState<Dayjs>(value)
 
-  function handleSelect(date: Dayjs) {
+  function changeDate(date: Dayjs) {
     setCurrentValue(date)
+    setCurrentMonth(date)
     onChange?.(date)
+  }
+
+  function handleSelect(date: Dayjs) {
+    changeDate(date)
   }
 
   const prevMonthHandler = () => {
@@ -41,9 +46,8 @@ const Calendar: React.FC<ICalendarProps> = (props) => {
   }
   const todayHandler = () => {
     const date = dayjs(Date.now())
-    setCurrentMonth(date)
-    setCurrentValue(date)
-    onChange?.(date)
+
+    changeDate(date)
   }
 
   return (
