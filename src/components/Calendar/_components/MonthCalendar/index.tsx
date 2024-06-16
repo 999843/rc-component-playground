@@ -62,7 +62,11 @@ const MonthCalendar: React.FC<IMonthCalendarProps> = (props) => {
       rows.push(row)
     }
 
-    return rows.map((row) => <div className="flex h-[100px]">{row}</div>)
+    return rows.map((row, index) => (
+      <div key={index} className="flex h-[100px]">
+        {row}
+      </div>
+    ))
   }
 
   return (

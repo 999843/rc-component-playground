@@ -13,7 +13,6 @@ export interface IHeaderProps {
 
 const Header: React.FC<IHeaderProps> = (props) => {
   const { curMonth, prevMonthHandler, nextMonthHandler, todayHandler } = props
-
   const localeContext = useLocaleContext()
 
   const calendarContext = allLocales[localeContext.locale]

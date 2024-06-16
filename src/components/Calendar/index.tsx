@@ -44,6 +44,7 @@ const Calendar: React.FC<ICalendarProps> = (props) => {
   const nextMonthHandler = () => {
     setCurrentMonth(currentMonth.add(1, 'month'))
   }
+
   const todayHandler = () => {
     const date = dayjs(Date.now())
 
