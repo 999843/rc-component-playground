@@ -30,9 +30,7 @@ const Portal = forwardRef((props: IPortalProps, ref) => {
     }
   }, [attach, container])
 
-  useImperativeHandle(ref, () => {
-    return container
-  })
+  useImperativeHandle(ref, () => container)
 
   return createPortal(children, container)
 })
