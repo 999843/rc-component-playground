@@ -4,6 +4,7 @@ import './style/global.css'
 import IconList from './components/Icon/IconList'
 import Space from './components/Space'
 import { ConfigProvider } from './components/Space/context'
+import Portal from './components/Portal'
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
           })}
         </Space>
       </ConfigProvider>
+
+      <Portal>
+        <div>children</div>
+      </Portal>
     </div>
   )
 }
