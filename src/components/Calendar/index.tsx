@@ -24,7 +24,6 @@ export interface ICalendarProps {
 
 const Calendar: React.FC<ICalendarProps> = (props) => {
   const { className, style, locale, value, onChange } = props
-
   const [currentValue, setCurrentValue] = useState<Dayjs>(value)
   const [currentMonth, setCurrentMonth] = useState<Dayjs>(value)
 
