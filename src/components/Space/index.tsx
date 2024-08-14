@@ -27,7 +27,6 @@ function getNumberSize(size: SizeType) {
 
 const Space: React.FC<ISpaceProps> = (props) => {
   const { space } = useConfigProvider()
-  console.log('space', space)
   const {
     style,
     children,
@@ -48,16 +47,16 @@ const Space: React.FC<ISpaceProps> = (props) => {
     const key = (child && child.key) || `space-item-${i}`
 
     return (
-      <>
+      <React.Fragment key={key}>
         <div className="space-item" key={key}>
           {child}
         </div>
-        {i < childNodes.length && split && (
+        {i < childNodes.length - 1 && split && (
           <span className={`${className}-split`} style={style}>
             {split}
           </span>
         )}
-      </>
+      </React.Fragment>
     )
   })
 

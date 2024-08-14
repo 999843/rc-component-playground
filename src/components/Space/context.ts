@@ -12,10 +12,10 @@ interface IConfigProviderProps extends PropsWithChildren<IConfigContextProps> {}
 
 export const ConfigProvider: React.FC<IConfigProviderProps> = (props) => {
   const { children, space } = props
-  return <Context.Provider value={{ space }}>{children}</Context.Provider>
+
+  return React.createElement(Context.Provider, { value: { space } }, children)
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export function useConfigProvider() {
   const config = React.useContext(Context)
 

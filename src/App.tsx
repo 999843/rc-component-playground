@@ -5,6 +5,7 @@ import IconList from './components/Icon/IconList'
 import Space from './components/Space'
 import { ConfigProvider } from './components/Space/context'
 import Portal from './components/Portal'
+import CopyToClipboard from './components/CopyToClipboard/indext'
 
 function App() {
   return (
@@ -12,10 +13,10 @@ function App() {
       {/* <MinCalender /> */}
       <Calendar value={dayjs(new Date())} locale="en-US" />
       <IconList></IconList>
-      <ConfigProvider space={{ size: 'middle' }}>
+      <ConfigProvider space={{ size: 'large' }}>
         <Space
+          split={<span>split</span>}
           className="bg-orange-300 [&>div]:bg-blue-100 h-24 mx-auto"
-          direction="horizontal"
           wrap
         >
           {new Array(10).fill(0).map((_, index) => {
@@ -27,6 +28,10 @@ function App() {
       <Portal>
         <div>children</div>
       </Portal>
+
+      <CopyToClipboard text={'hello world'}>
+        <span>CopyToClipboard</span>
+      </CopyToClipboard>
     </div>
   )
 }
